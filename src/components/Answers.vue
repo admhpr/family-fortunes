@@ -31,30 +31,37 @@ const answers = [
 ];
 </script>
 <template>
-  <div class="flex" v-for="(answer, position) in answers" :key="answer.content">
+  <card
+    class="card flex"
+    v-for="(answer, position) in answers"
+    :key="answer.content"
+  >
     <div class="position">{{ position + 1 }}</div>
     <div class="content">{{ answer.content }}</div>
     <div class="points">{{ answer.points }}</div>
-  </div>
+  </card>
 </template>
 
 <style scoped>
+* {
+  font-size: 60px;
+}
 .flex {
   display: flex;
   justify-content: space-between;
 }
 
 .flex > div {
-  padding: 1rem;
 }
 .position {
-  flex-basis: 8%;
-  max-width: 8%;
+  flex-basis: 5%;
+  max-width: 5%;
   background-color: red;
 }
 .content {
   flex-basis: 80%;
   max-width: 80%;
+  padding: 0 23rem;
   background-color: blue;
 }
 

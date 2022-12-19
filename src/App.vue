@@ -1,20 +1,17 @@
 <script setup lang="ts">
 import Answers from "./components/Answers.vue";
 import Scores from "./components/Scores.vue";
+// import { game } from "./game.fixture";
+
+const question = "What is the most populous country in the world?";
 </script>
 
 <template>
-  <section class="flex">
+  <section class="wrapper">
     <header>
-      <img
-        alt="Vue logo"
-        class="logo"
-        src="./assets/logo.svg"
-        width="125"
-        height="125"
-      />
-
-      <div class="wrapper"></div>
+      <card class="question">
+        {{ question }}
+      </card>
     </header>
 
     <main>
@@ -25,7 +22,11 @@ import Scores from "./components/Scores.vue";
 </template>
 
 <style scoped>
-.flex {
+.question {
+  font-size: 50px;
+  padding: 5px;
+}
+.wrapper {
   display: flex;
   flex-direction: column;
 }
