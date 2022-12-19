@@ -1,34 +1,10 @@
 <script setup lang="ts">
-const answers = [
-  {
-    content: "Australia",
-    points: 26,
-  },
-  {
-    content: "Afghanistan",
-    points: 21,
-  },
-  {
-    content: "America",
-    points: 18,
-  },
-  {
-    content: "Albania",
-    points: 13,
-  },
-  {
-    content: "Algeria",
-    points: 6,
-  },
-  {
-    content: "Argentina",
-    points: 4,
-  },
-  {
-    content: "Armenia",
-    points: 2,
-  },
-];
+const props = defineProps<{
+  answers: {
+    content: string;
+    points: number;
+  }[];
+}>();
 </script>
 <template>
   <card
@@ -38,7 +14,9 @@ const answers = [
   >
     <div class="position">{{ position + 1 }}</div>
     <div class="content">{{ answer.content }}</div>
-    <div class="points">{{ answer.points }}</div>
+    <div class="points">
+      <span v-show="answer.points > 0">{{ answer.points }}</span>
+    </div>
   </card>
 </template>
 

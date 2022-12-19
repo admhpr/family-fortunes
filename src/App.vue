@@ -1,21 +1,25 @@
 <script setup lang="ts">
+import { computed, ref } from "vue";
 import Answers from "./components/Answers.vue";
 import Scores from "./components/Scores.vue";
-// import { game } from "./game.fixture";
+import { game } from "./game.fixture";
 
-const question = "What is the most populous country in the world?";
+const currentQuestionIndex = ref(0);
+const currentGameProgress = computed(() => game[currentQuestionIndex.value]);
+const answersToDisplay = computed(() =>
+  currentGameProgress.value.answers.map((a) => ({ content: "", points: 0 }))
+);
+const possibleAnswers = computed(() => currentGameProgress.value.answers);
 </script>
 
 <template>
   <section class="wrapper">
     <header>
-      <card class="question">
-        {{ question }}
-      </card>
+      <card class="question"> {{ currentGameProgress.question }} ? </card>
     </header>
 
     <main>
-      <Answers />
+      <Answers :answers="answersToDisplay" />
       <Scores />
     </main>
   </section>
@@ -29,5 +33,6 @@ const question = "What is the most populous country in the world?";
 .wrapper {
   display: flex;
   flex-direction: column;
+  min-width: 70vw;
 }
 </style>
