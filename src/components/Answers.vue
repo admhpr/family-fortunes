@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   answers: {
     content: string;
     points: number;
@@ -7,17 +7,19 @@ const props = defineProps<{
 }>();
 </script>
 <template>
-  <card
-    class="card flex"
-    v-for="(answer, position) in answers"
-    :key="answer.content"
-  >
-    <div class="position">{{ position + 1 }}</div>
-    <div class="content">{{ answer.content }}</div>
-    <div class="points">
-      <span v-show="answer.points > 0">{{ answer.points }}</span>
-    </div>
-  </card>
+  <section>
+    <card
+      class="card flex"
+      v-for="(answer, position) in answers"
+      :key="answer.content"
+    >
+      <div class="position">{{ position + 1 }}</div>
+      <div class="content">{{ answer.content }}</div>
+      <div class="points">
+        <span v-show="answer.points > 0">{{ answer.points }}</span>
+      </div>
+    </card>
+  </section>
 </template>
 
 <style scoped>
@@ -29,8 +31,6 @@ const props = defineProps<{
   justify-content: space-between;
 }
 
-.flex > div {
-}
 .position {
   flex-basis: 5%;
   max-width: 5%;
@@ -44,8 +44,10 @@ const props = defineProps<{
 }
 
 .points {
-  flex-basis: 12%;
-  max-width: 12%;
+  flex-basis: 30%;
+  max-width: 30%;
+  padding: 0 3rem;
+
   background-color: pink;
 }
 </style>

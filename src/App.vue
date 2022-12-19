@@ -13,16 +13,15 @@ const possibleAnswers = computed(() => currentGameProgress.value.answers);
 </script>
 
 <template>
-  <section class="wrapper">
-    <header>
+  <main>
+    <section>
       <card class="question"> {{ currentGameProgress.question }} ? </card>
-    </header>
-
-    <main>
+    </section>
+    <section class="wrapper">
       <Answers :answers="answersToDisplay" />
-      <Scores />
-    </main>
-  </section>
+    </section>
+    <Scores />
+  </main>
 </template>
 
 <style scoped>
@@ -30,9 +29,13 @@ const possibleAnswers = computed(() => currentGameProgress.value.answers);
   font-size: 50px;
   padding: 5px;
 }
-.wrapper {
+main {
   display: flex;
   flex-direction: column;
+}
+.wrapper {
+  display: flex;
+  justify-content: space-between;
   min-width: 70vw;
 }
 </style>
