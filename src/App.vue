@@ -9,16 +9,30 @@ const currentGameProgress = computed(() => game[currentQuestionIndex.value]);
 const answersToDisplay = computed(() =>
   currentGameProgress.value.answers.map((a) => ({ content: "", points: 0 }))
 );
+
+const familyScores = ref({
+  A: 0,
+  B: 0,
+});
 const possibleAnswers = computed(() => currentGameProgress.value.answers);
 </script>
 
 <template>
-  <main>
+  <main class="flex-column">
     <section>
       <card class="question"> {{ currentGameProgress.question }} ? </card>
     </section>
-    <section class="wrapper">
-      <Answers :answers="answersToDisplay" />
+    <section class="answers-wrapper">
+      <Answers :answers="answersToDisplay">
+        <section class="flex-column">
+          <div
+            v-for="[family, score] of Object.entries(familyScores)"
+            :key="family"
+          >
+            {{ family }}: {{ score }}
+          </div>
+        </section>
+      </Answers>
     </section>
     <Scores />
   </main>
@@ -29,11 +43,11 @@ const possibleAnswers = computed(() => currentGameProgress.value.answers);
   font-size: 50px;
   padding: 5px;
 }
-main {
+.flex-column {
   display: flex;
   flex-direction: column;
 }
-.wrapper {
+.answers-wrapper {
   display: flex;
   justify-content: space-between;
   min-width: 70vw;

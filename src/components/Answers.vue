@@ -7,24 +7,37 @@ defineProps<{
 }>();
 </script>
 <template>
-  <section>
-    <card
-      class="card flex"
-      v-for="(answer, position) in answers"
-      :key="answer.content"
-    >
-      <div class="position">{{ position + 1 }}</div>
-      <div class="content">{{ answer.content }}</div>
-      <div class="points">
-        <span v-show="answer.points > 0">{{ answer.points }}</span>
-      </div>
-    </card>
+  <section class="flex">
+    <slot />
+    <div class="answers-display">
+      <card
+        class="card flex"
+        v-for="(answer, position) in answers"
+        :key="answer.content"
+      >
+        <div class="position">{{ position + 1 }}</div>
+        <div class="content">{{ answer.content }}</div>
+        <div class="points">
+          <span v-show="answer.points > 0">{{ answer.points }}</span>
+        </div>
+      </card>
+    </div>
   </section>
 </template>
 
 <style scoped>
 * {
   font-size: 60px;
+}
+section {
+  margin-top: 2rem;
+}
+
+.answers-display {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  min-width: 50vw;
 }
 .flex {
   display: flex;
@@ -44,9 +57,9 @@ defineProps<{
 }
 
 .points {
-  flex-basis: 30%;
-  max-width: 30%;
-  padding: 0 3rem;
+  flex-basis: 10%;
+  max-width: 10%;
+  padding: 0 0rem;
 
   background-color: pink;
 }
