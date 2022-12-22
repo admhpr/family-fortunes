@@ -5,10 +5,18 @@ defineProps<{
     points: number;
   }[];
 }>();
+
+const emit = defineEmits<{
+  (e: "correct-answer-submitted", answerIndex: number): void;
+}>();
+
+function onAnswerClick(answerIndex: number) {
+  emit("correct-answer-submitted", answerIndex);
+}
 </script>
 <template>
   <section class="flex">
-    <slot />
+    <slot name="families" />
     <div class="answers-display">
       <card
         class="card flex"
@@ -16,12 +24,15 @@ defineProps<{
         :key="answer.content"
       >
         <div class="position">{{ position + 1 }}</div>
-        <div class="content">{{ answer.content }}</div>
+        <div class="content" @click="onAnswerClick(position)">
+          {{ answer.content }}
+        </div>
         <div class="points">
           <span v-show="answer.points > 0">{{ answer.points }}</span>
         </div>
       </card>
     </div>
+    <slot name="chances" />
   </section>
 </template>
 
@@ -52,7 +63,7 @@ section {
 .content {
   flex-basis: 80%;
   max-width: 80%;
-  padding: 0 23rem;
+  padding: 0 3rem;
   background-color: blue;
 }
 
