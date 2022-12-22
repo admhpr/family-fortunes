@@ -25,12 +25,12 @@ const possibleAnswers = computed(() => currentGameProgress.value.answers);
     <section class="answers-wrapper">
       <Answers :answers="answersToDisplay">
         <section class="flex-column">
-          <div
+          <card
             v-for="[family, score] of Object.entries(familyScores)"
             :key="family"
           >
             {{ family }}: {{ score }}
-          </div>
+          </card>
         </section>
       </Answers>
     </section>
